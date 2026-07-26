@@ -57,7 +57,7 @@ jobs:
           cp app/build/outputs/apk/debug/app-debug.apk release/emrooz-chand.apk
           sha256sum release/emrooz-chand.apk > release/SHA256.txt
           base64 -w 0 release/emrooz-chand.apk > release/apk.b64
-          split -b 12000 -d -a 2 release/apk.b64 release/chunks/part_
+          split -b 5000 -d -a 2 release/apk.b64 release/chunks/part_
           ls release/chunks | wc -l > release/CHUNK_COUNT.txt
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

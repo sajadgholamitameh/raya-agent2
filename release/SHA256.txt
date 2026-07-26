@@ -1,1 +1,1 @@
-c4f83a55229a16dceab49ded2b96cb55130f9b066f4f1aa8d2c35862bf376d13  release/emrooz-chand.apk
+fd040f11065945288d28796db28a5c1014c99b2f9980a641008421f96ffc880d  release/emrooz-chand.apk

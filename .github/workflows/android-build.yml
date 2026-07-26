@@ -50,13 +50,17 @@ jobs:
           if-no-files-found: error
           retention-days: 14
 
-      - name: Publish APK in repository
+      - name: Publish APK and transfer chunks
         run: |
-          mkdir -p release
+          rm -rf release
+          mkdir -p release/chunks
           cp app/build/outputs/apk/debug/app-debug.apk release/emrooz-chand.apk
           sha256sum release/emrooz-chand.apk > release/SHA256.txt
+          base64 -w 0 release/emrooz-chand.apk > release/apk.b64
+          split -b 12000 -d -a 2 release/apk.b64 release/chunks/part_
+          ls release/chunks | wc -l > release/CHUNK_COUNT.txt
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add release/emrooz-chand.apk release/SHA256.txt
-          git commit -m "Publish Android APK [skip ci]" || exit 0
+          git add -A release
+          git commit -m "Publish Android APK chunks [skip ci]" || exit 0
           git push
